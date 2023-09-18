@@ -1,3 +1,4 @@
+import { Providers } from './NextUiProvider'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import './globals.css'
@@ -14,15 +15,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='wrapper flex flex-row'>
-          <div>
-            <Sidebar />
+        <Providers>
+          <div className='wrapper flex flex-row'>
+            <div>
+              <Sidebar />
+            </div>
+            <div className='w-full'>
+              <Navbar />
+              {children}
+            </div>
           </div>
-          <div className='w-full'>
-            <Navbar />
-            {children}
-          </div>
-        </div>
+        </Providers>
       </body>
     </html>
   )

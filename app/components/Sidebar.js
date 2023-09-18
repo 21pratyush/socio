@@ -14,7 +14,7 @@ import videos from "@/public/Svg/videos.svg"
 
 const Sidebar = () => {
     return (
-        <div className='min-h-screen w-[8vh] bg-neutral-100 flex justify-between items-center flex-col py-3 border-r border-r-gray-400 border-opacity-30'>
+        <div className='min-h-screen w-[8vh] bg-white flex justify-between items-center flex-col py-3 border-r border-r-gray-400 border-opacity-30'>
             <div className='flex flex-col justify-center space-y-8 items-center'>
                 <div>
                     <Image src={facebook} alt='logo' className='h-[52px] w-[52px] object-contain cursor-pointer' />
