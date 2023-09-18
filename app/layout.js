@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className='wrapper flex flex-row'>
+          <div className='wrapper flex flex-row overflow-x-hidden'>
             <div>
               <Sidebar />
             </div>
