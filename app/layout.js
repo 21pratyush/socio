@@ -1,6 +1,7 @@
 import { Providers } from './NextUiProvider'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
+import { GlobalContextProvider } from './context/GlobalContext'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -14,19 +15,21 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Providers>
-          <div className='wrapper flex flex-row overflow-x-hidden'>
-            <div>
-              <Sidebar />
+      <GlobalContextProvider>
+        <body className={inter.className}>
+          <Providers>
+            <div className='wrapper flex flex-row overflow-x-hidden'>
+              <div>
+                <Sidebar />
+              </div>
+              <div className='w-full'>
+                <Navbar />
+                {children}
+              </div>
             </div>
-            <div className='w-full'>
-              <Navbar />
-              {children}
-            </div>
-          </div>
-        </Providers>
-      </body>
+          </Providers>
+        </body>
+      </GlobalContextProvider>
     </html>
   )
 }
