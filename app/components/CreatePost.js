@@ -3,14 +3,36 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import cross from "@/public/Svg/cross.svg"
 import "react-quill/dist/quill.bubble.css";
-import ReactQuill from 'react-quill';
 import { Global } from '../context/GlobalContext';
-import { Avatar, Select, SelectItem } from '@nextui-org/react';
-import { type } from '../constants/posttype';
+import { Avatar, } from '@nextui-org/react';
+import dynamic from 'next/dynamic';
+import photo from "@/public/Svg/photo.svg"
+
+const DynamicPicker = dynamic(() => import('emoji-mart').then((mod) => mod.Picker), {
+    ssr: false, // Disable server-side rendering for this component
+});
 
 const CreatePost = () => {
-    const [value, setValue] = useState("");
+    // const [value, setValue] = useState("");
     const { setopencreatepost, closepostmodal } = Global()
+    const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+    const [text, setText] = useState('');
+
+
+    const handleEmojiClick = (emoji) => {
+        // Insert the selected emoji into the textarea at the current cursor position
+        const textarea = document.getElementById('custom-textarea');
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const newText =
+            text.substring(0, start) + emoji.native + text.substring(end);
+        setText(newText);
+        setShowEmojiPicker(false);
+        textarea.focus();
+    };
+
+
+
     return (
         <div className='h-[92vh] w-[100vw] bg-black bg-opacity-30 flex items-center justify-center' >
             <div className='h-[600px] w-[600px] bg-white rounded-md'>
@@ -21,42 +43,41 @@ const CreatePost = () => {
                     </div>
                 </div>
                 <hr />
-                <div className='px-6 w-full py-2 flex flex-col gap-2'>
-                    <div className='flex items-center space-x-3'>
+                <div className='px-6 w-full py-3 flex flex-col gap-2'>
+                    <div className='flex items-center space-x-4'>
                         <div>
                             <Avatar isBordered />
                         </div>
-                        <div className='flex flex-col space-y-3 items-start w-full'>
-                            <h5 className='text-lg font-semibold capitalize'>sagar dabas</h5>
-                            <Select
-                                label="View"
-                                placeholder="Select an animal"
-                                className="max-w-[200px] text-smm"
-                                defaultSelectedKeys={["public"]}
-                                size='lg'
-
-                            >
-                                {type.map((item) => (
-                                    <SelectItem key={item.view} >
-                                        {item.view}
-                                    </SelectItem>
-                                ))}
-
-                            </Select>
+                        <div className='flex flex-col  items-start w-full'>
+                            <h5 className='text-base font-semibold capitalize'>sagar dabas</h5>
+                            <div className="custom-select">
+                                <select className="" id="custom-options">
+                                    <option value="" data-icon="🌐">Public</option>
+                                    <option value="" data-icon="👥">Everyone</option>
+                                    <option value="" data-icon="📝">For Post</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div className='h-[200px] overflow-hidden'>
-                        <ReactQuill
-                            className=""
-                            theme="bubble"
-                            value={value}
-                            onChange={setValue}
-                            placeholder="What's on your mind Sagar?"
-                        />
+                    <div className=''>
+                        <textarea className='w-full text-lg capitalize custom-textarea' name="" id="" cols="25" rows="10" placeholder='Whats on your mind Sagar?'></textarea>
                     </div>
+                    <div className='h-[40px] w-full border border-black'></div>
                 </div>
-                <div className='h-[300px] bg-blue-500 w-full'>
-                    hii
+                <div className='px-6 space-y-3'>
+                    <div className='h-[50px] w-full border border-black border-opacity-30 rounded-md flex items-center justify-between px-3'>
+                        <div>
+                            <h5>Add to your post</h5>
+                        </div>
+                        <div className='flex items-center gap-2'>
+                            <Image src={photo} alt='' className='h-[30px] w-[30px] mix-blend-multiply cursor-pointer' />
+                            <Image src={photo} alt='' className='h-[30px] w-[30px] mix-blend-multiply cursor-pointer' />
+                            <Image src={photo} alt='' className='h-[30px] w-[30px] mix-blend-multiply cursor-pointer' />
+                            <Image src={photo} alt='' className='h-[30px] w-[30px] mix-blend-multiply cursor-pointer' />
+                            <Image src={photo} alt='' className='h-[30px] w-[30px] mix-blend-multiply cursor-pointer' />
+                        </div>
+                    </div>
+                    <button className='bg-blue-500 text-white text-base font-medium w-full h-[40px] text-center capitalize rounded'>Post</button>
                 </div>
             </div>
         </div>

@@ -2,13 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-.ql-container {
-  font-size: 28px !important;
-}
-.quill > .ql-container > .ql-editor.ql-blank::before {
-  color: #b3b3b1;
+/* Style for the custom select container */
+.custom-select {
+  position: relative;
+  width: 100px; /* Adjust as needed */
+  overflow: hidden;
 }
 
-.ql-editor {
-  height: 250px;
+/* Style for the select element */
+#custom-options {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 3px 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 12px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+/* Style for the custom icons */
+option::before {
+  content: attr(data-icon);
+  margin-right: 10px;
 }

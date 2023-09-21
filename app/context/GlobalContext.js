@@ -5,7 +5,7 @@ export const GlobalContext = createContext()
 
 
 export const GlobalContextProvider = ({ children }) => {
-    const [opencreatepost, setopencreatepost] = useState(false)
+    const [opencreatepost, setopencreatepost] = useState(true)
 
     const openpostmodal = () => {
         setopencreatepost(true)
