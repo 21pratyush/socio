@@ -1,13 +1,8 @@
 "use client"
 import CreatePost from "./components/CreatePost";
-import Events from "./components/Events";
-import FollowSuggestion from "./components/FollowSuggestion";
-import Footer from "./components/Footer";
-import GroupVideoCall from "./components/GroupVideoCall";
-import MainHeader from "./components/MainHeader";
-import OnlineContacts from "./components/OnlineContacts";
 import Post from "./components/Post";
-import Stories from "./components/Stories";
+import Sidebar from "./components/Sidebar";
+import Suggestions from "./components/Suggestions";
 import { Global } from "./context/GlobalContext";
 
 
@@ -15,20 +10,15 @@ export default function Home() {
   const { opencreatepost } = Global()
   return (
     <div className="relative">
-      <main className='flex  bg-neutral-100'>
-        <div className="flex-[1.85]  h-[92vh]  flex flex-col py-5 items-center gap-6">
-          <GroupVideoCall />
-          <OnlineContacts />
+      <main className='flex'>
+        <div className=''>
+          <Sidebar />
         </div>
-        <div className="flex-[5]  h-[92vh] flex flex-col py-5 items-center gap-6 overflow-hidden">
-          <MainHeader />
+        <div className="flex-[4]  h-[100vh] flex flex-col pt-5 items-center gap-6 overflow-hidden">
           <Post />
         </div>
         <div className="flex-[2.5]  h-[92vh] flex flex-col py-5 items-center gap-6 overflow-y-hidden">
-          <Stories />
-          <Events />
-          <FollowSuggestion />
-          <Footer />
+          <Suggestions />
         </div>
       </main>
       {

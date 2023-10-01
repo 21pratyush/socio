@@ -4,7 +4,7 @@ import { posts } from '../constants/PostData'
 
 const Post = () => {
     return (
-        <div className='w-[95%]  overflow-y-scroll'>
+        <div className='w-[90%] overflow-y-scroll'>
             <div className='flex flex-col gap-4'>
                 {
                     posts.map((item) => {

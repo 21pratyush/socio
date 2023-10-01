@@ -1,9 +1,11 @@
+import Image from 'next/image'
 import { Providers } from './NextUiProvider'
-import Navbar from './components/Navbar'
-import Sidebar from './components/Sidebar'
 import { GlobalContextProvider } from './context/GlobalContext'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import bg from "../public/Pics/bg.png"
+// import "@/app/styles.scss"
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,12 +20,12 @@ export default function RootLayout({ children }) {
       <GlobalContextProvider>
         <body className={inter.className}>
           <Providers>
-            <div className='wrapper flex flex-row overflow-x-hidden'>
-              <div>
-                <Sidebar />
-              </div>
+            <div className=' flex flex-row overflow-x-hidden'>
+              <Image src={bg}
+                className="h-[100vh] w-[100vw] object-cover fixed inset-0 z-[-1] "
+                alt=''
+              />
               <div className='w-full'>
-                <Navbar />
                 {children}
               </div>
             </div>
